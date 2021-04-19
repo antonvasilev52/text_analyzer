@@ -1,0 +1,27 @@
+<head>
+  <title>Stats</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<a href="/dogs" style="border: 1px solid; border-radius: 5px; padding: 3px; text-decoration: none;" >Back</a>
+<p><%= Time.now %></p>
+<p>Number of characters (including whitespaces): <%= size %>.</p>
+<p>Number of characters (without whitespaces): <%= size_small %>.</p>
+<div class="tooltip">Translation pages: <%= pages %>.
+  <span class="tooltiptext">Number of characters divided by 1,800.</span>
+</div>
+<p>Pages: <%= pages %>.</p>
+<% if comma == 1 %>
+<p>You used <%= comma %> comma.</p>
+<% else %>
+<p>You used <%= comma %> commas.</p>
+<% end %>
+
+<% if period == 1 %>
+<p>You used <%= period %> period.</p>
+<% else %>
+<p>You used <%= period %> periods.</p>
+<% end %>
+
+<p>The most frequent word is "<%= most %>", it was used <%= highest_occurrence %> times.</p>
+</body>
