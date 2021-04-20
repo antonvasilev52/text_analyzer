@@ -2,7 +2,6 @@ require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
 configure { set :server, :Puma }
-configure { set :bind, 'sad-kowalevski-f08bed.netlify.app' }
 
 get '/' do
   "Hello world, it's #{Time.now} at the server!"
