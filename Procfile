@@ -1,1 +1,1 @@
-web: ruby hello_world.rb
+bundle exec rackup -p 9292 config.ru
