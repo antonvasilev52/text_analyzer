@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
-configure { set :server, :Puma }
+# configure { set :server, :Puma }
 
 get '/' do
   "Hello world, it's #{Time.now} at the server!"
