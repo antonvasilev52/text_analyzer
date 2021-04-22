@@ -4,9 +4,24 @@ body {
   background-size: cover;
 } 
 
-p, div, ul, h1, label {
+p, div, ul, h1, label, a, textarea, input {
   color: white;
   font-family: Monaco, Verdana, serif;
+}
+
+textarea {
+border: solid 3px white;
+border-radius: 8px;
+background-color: #dc9064;
+opacity: 0.7;
+}
+
+.button {
+  background-image: linear-gradient(to bottom right, #dc9064, #7a5646);
+  border-style: outset;
+  border-radius: 5px;
+  padding: 3px;
+  font-size: 14px; 
 }
 
 /* Tooltip container */

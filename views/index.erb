@@ -5,35 +5,18 @@
 
 <body>
 <h1><%= "Ruby " + "が大好きです" %></h1>
-  <% @name = "Anton" %>
-  <p>Hello, <%= @name %>. </p>
 
-<ul>
-  <% squares = [1, 4, 9, 16] %>
-  <% name = "Anton" %>
-  <% squares.each do |square| %>
-    <li><%= square * square %></li>
-  <% end %>
-</ul>
-
-<form method="POST" action="/food"><!--
+<form method="POST" action="/stats"><!--
   <label for="fname">First name:</label> 
   <input type="text" id="fname" name="fname"><br><br>
   <textarea id="fname" name="fname"></textarea><br><br>
   <label for="lname">Last name:</label>
   <input type="text" id="lname" name="lname"><br><br>
  -->
-    <label for="fname">Enter your text:</label> 
-  <textarea id="fname" name="fname" rows="4" cols="50" style="border:double 5px gray;"></textarea><br><br>
-    <input type="submit">
+    <label for="fname" style="vertical-align: top;">Enter your text:</label> 
+  <textarea id="fname" name="fname" rows="5" cols="70"></textarea><br><br>
+    <input type="submit" value="Analyze" class="button">
 </form>
 
-    <p>This is <%= params[:fname].to_s %></p>
 
-<% wall_posts = ["First post!", "Second post!", "Hello, it's your mother. Why don't you ever call me?"] %>
-<ul>
-  <% wall_posts.each do |post| %>
-    <li><%= post %></li>
-  <% end %>
-</ul>
 </body>

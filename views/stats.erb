@@ -3,14 +3,15 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<a href="/dogs" style="border: 1px solid; border-radius: 5px; padding: 3px; text-decoration: none;" >Back</a>
-<p><%= Time.now %></p>
-<p>Number of characters (including whitespaces): <%= size %>.</p>
-<p>Number of characters (without whitespaces): <%= size_small %>.</p>
+<button class = "button" ><a href="/home" style="text-decoration: none;" >Back</a></button>
+<p>Characters (including whitespaces): <%= size %>.</p> <!--
+<p>Instance variables set in route handlers are directly accessible by templates: <%= @kek %>.</p> -->
+<p>Characters (without whitespaces): <%= size_small %>.</p>
+<p>Words: <%= word_count %>.</p>
+<p>Unique words: <%= unique_words %> (<%= (unique_words/word_count.to_f).round(3)*100 %>%).</p>
 <div class="tooltip">Translation pages: <%= pages %>.
   <span class="tooltiptext">Number of characters divided by 1,800.</span>
 </div>
-<p>Pages: <%= pages %>.</p>
 <% if comma == 1 %>
 <p>You used <%= comma %> comma.</p>
 <% else %>
@@ -23,5 +24,6 @@
 <p>You used <%= period %> periods.</p>
 <% end %>
 
-<p>The most frequent word is "<%= most %>", it was used <%= highest_occurrence %> times.</p>
+<p>Most frequent word: "<%= most %>" (used <%= highest_occurrence %> times)</p>
+<p>Time to proces: <%=  (Time.now - start).round(4) %> seconds.</p>
 </body>
