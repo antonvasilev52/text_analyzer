@@ -3,8 +3,11 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<button class = "button" ><a href="/home" style="text-decoration: none;" >Back</a></button>
-<p>Characters (including whitespaces): <%= size %>.</p> <!--
+<form method="GET" action="/home">
+    <input type="submit" value="<%= I18n.t('back') %>" class="button">
+</form>
+
+<p><%= I18n.t('characters_spaces') %>: <%= size %>.</p> <!--
 <p>Instance variables set in route handlers are directly accessible by templates: <%= @kek %>.</p> -->
 <p>Characters (without whitespaces): <%= size_small %>.</p>
 <p>Words: <%= word_count %>.</p>

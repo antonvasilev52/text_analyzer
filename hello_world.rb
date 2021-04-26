@@ -2,13 +2,23 @@ require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
 # configure { set :server, :Puma }
+require 'i18n'
+enable :sessions
+
+I18n.load_path << Dir[File.expand_path("locales") + "/*.yml"]
+I18n.default_locale = :en
 
 get '/' do
-  "Hello world, it's #{Time.now} at the server!"
+  redirect to('/home')
 end
 
 get '/home' do
-  name = "Anton"
+  #session[:locale] = :en
+  redirect to('/home/' + (session[:locale]).to_s)
+end
+
+get '/home/:lang' do |lang|
+  session[:locale] = lang
   erb :index
 end
 

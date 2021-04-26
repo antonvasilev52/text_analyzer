@@ -1,10 +1,24 @@
 <head>
   <title>Embedded Ruby</title>
    <link rel="stylesheet" href="/css/main.css">
+   
 </head>
 
-<body>
-<h1><%= "Ruby " + "が大好きです" %></h1>
+<body> 
+
+<form method="GET" action="/home/en">
+    <input type="submit" value="English" class="button">
+</form>
+<form method="GET" action="/home/fr">
+    <input type="submit" value="Français" class="button">
+</form>
+<form method="GET" action="/home/ja">
+    <input type="submit" value="日本語" class="button">
+</form>
+<h3><% I18n.locale = session[:locale] %></h3> 
+<h1><%= I18n.t('title') %></h1><!--
+<p>lang="<%= I18n.locale %>"</p>
+<h3><%= I18n.t('an_article') %></h3>-->
 
 <form method="POST" action="/stats"><!--
   <label for="fname">First name:</label> 
@@ -13,10 +27,13 @@
   <label for="lname">Last name:</label>
   <input type="text" id="lname" name="lname"><br><br>
  -->
-    <label for="fname" style="vertical-align: top;">Enter your text:</label> 
+    <label for="fname" style="vertical-align: top;"><%= I18n.t('text_label') %></label> 
   <textarea id="fname" name="fname" rows="5" cols="70"></textarea><br><br>
-    <input type="submit" value="Analyze" class="button">
+    <input type="submit" value="<%= I18n.t('analyze') %>" class="button">
 </form>
 
-
+<p id = "locale">Locales:</p>
+<script>
+document.getElementById("locale").innerHTML = "Hello JavaScript!";
+</script>
 </body>
