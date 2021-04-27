@@ -24,7 +24,10 @@ end
 
 post '/stats' do
     start = Time.now
-    str = params[:fname].to_s
+    str = params[:text].to_s
+    if str.length == 0
+      erb :error_empty 
+    else
     # @kek = params[:fname]
     no_spaces = str.gsub(/\s+/, "")
     comma = str.count ','
@@ -36,13 +39,17 @@ post '/stats' do
     word_array.each { |word| word_count[word] += 1} # count each word
     most_frequent = word_array.max_by {|word| word_array.count(word)}
     number_occurences = word_array.tally #this creates a hash
-    highest_occurrence =  number_occurences[most_frequent]
+    highest_occurrence =  number_occurences[most_frequent] # the value (number) from the hash number_occurences
+    
+    all_frequents_hash = number_occurences.keep_if {| key, value | value == highest_occurrence } # keep only words that are frequent
+    
      
      word_count = word_array.length()
      unique_words = word_array.uniq.length
      
     #"Size is #{str.size} and Length is #{str.length}"
-    erb :stats, :locals => {:size => str.size, :size_small => no_spaces.size, :pages => (str.size/1800.0).round(3) , :comma => comma, :period => period, :most => most_frequent, :highest_occurrence => highest_occurrence, :start => start, :unique_words => unique_words, :word_count => word_count}
+    erb :stats, :locals => {:size => str.size, :size_small => no_spaces.size, :pages => (str.size/1800.0).round(3) , :comma => comma, :period => period, :most => most_frequent, :highest_occurrence => highest_occurrence, :start => start, :unique_words => unique_words, :word_count => word_count, :frequent_count => all_frequents_hash.keys }
     #"My name is #{params[:fname]}, and I love #{params[:lname]}."
     #"The length is #{params[:fname]}.size"
+    end
 end

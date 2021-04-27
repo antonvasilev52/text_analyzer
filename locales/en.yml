@@ -5,3 +5,6 @@ en:
   title: "Simple text analyzer"
   back: "Back"
   analyze: "Analyze"
+  word:
+      one: "word"
+      other: "words" 
