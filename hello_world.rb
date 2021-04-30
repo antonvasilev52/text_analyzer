@@ -32,7 +32,8 @@ post '/stats' do
     no_spaces = str.gsub(/\s+/, "")
     comma = str.count ','
     period = str.count '.'
-    
+    str.gsub!(/[-]/, ' ') # Replace all hyphens with whitespaces for phrases like "Comment-allez vous?"
+    str.gsub!(/[^a-zA-Zа-яА-Я0-9éèêëîïôùûüÿàœçÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸ ]/, '')    # keep only Latin and Russian letters and digits
     word_count = {} # empty hash for word count
     word_count.default = 0
     word_array = str.split

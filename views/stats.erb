@@ -30,7 +30,7 @@
 <% if highest_occurrence == 1 %>
 <p>No 'most frequent' word: they are all used only once.</p>
 <% else %>
-<p>Most frequent <%= I18n.t :word, :count => frequent_count.length %>: "<%= frequent_count.join('", "') %>" (used <%= highest_occurrence %> times).</p>
+<p><%= I18n.t :word, :count => frequent_count.length %>: "<%= frequent_count.join('", "') %>" (<%= I18n.t :times %>: <%= highest_occurrence %>).</p>
 <% end %>
 
 <!--

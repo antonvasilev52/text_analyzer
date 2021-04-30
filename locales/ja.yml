@@ -5,3 +5,5 @@ ja:
   title: "テキスト・アナライザー"
   back: "戻 る"
   analyze: "分析"
+  word: "最も頻繁な言葉"
+  times: "発生数"

@@ -6,5 +6,6 @@ en:
   back: "Back"
   analyze: "Analyze"
   word:
-      one: "word"
-      other: "words" 
+      one: "Most frequent word"
+      other: "Most frequent words"
+  times: "occurrences"

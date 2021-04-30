@@ -5,3 +5,7 @@ fr:
   title: "Analyseur de textes"
   back: "Retour"
   analyze: "Analyser"
+  word:
+      one: "Le mot le plus fréquent"
+      other: "Les mots les plus fréquents" 
+  times: "le nombre d’occurrences"
