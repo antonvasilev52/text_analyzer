@@ -9,10 +9,10 @@ I18n.load_path << Dir[File.expand_path("locales") + "/*.yml"]
 I18n.default_locale = :en
 
 get '/' do
-  redirect to('/home')
+  redirect to('/home/en')
 end
 
-get '/home' do
+get '/home/?' do
   #session[:locale] = :en
   redirect to('/home/' + (session[:locale]).to_s)
 end
