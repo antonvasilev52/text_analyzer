@@ -1,6 +1,6 @@
 # text_analyzer
 Powered by Sinatra and ERB
 
-![](https://estruyf-github.azurewebsites.net/api/VisitorHit?user=antonvasilev52&repo=text_analyzer&countColorcountColor&countColor=%237B1E7A)
+https://img.shields.io/github/languages/code-size/antonvasilev52/text_analyzer
 
 ![GitHub language count](https://img.shields.io/github/languages/count/antonvasilev52/text_analyzer)
