@@ -25,6 +25,7 @@ end
 post '/stats' do
     start = Time.now
     str = params[:text].to_s
+    @count_dots = params[:count_dots] 
     if str.length == 0
       erb :error_empty 
     else
@@ -32,6 +33,14 @@ post '/stats' do
     no_spaces = str.gsub(/\s+/, "")
     comma = str.count ','
     period = str.count '.'
+    
+    sentences_array = str.split(/[.!?]/) # Get array of sentences (very roughly)
+    words_in_sentences = [] # empty array to store the number of words in each sentence
+    sentences_array.each { |kek| words_in_sentences << (kek.split).length } # Get the number of words in each sentence
+    average_sentence_length = words_in_sentences.sum / words_in_sentences.length.to_f
+    
+    
+    
     str.gsub!(/[-]/, ' ') # Replace all hyphens with whitespaces for phrases like "Comment-allez vous?"
     str.gsub!(/[^a-zA-Zа-яА-Я0-9éèêëîïôùûüÿàœçÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸ ]/, '')    # keep only Latin and Russian letters and digits
     word_count = {} # empty hash for word count
@@ -48,8 +57,11 @@ post '/stats' do
      word_count = word_array.length()
      unique_words = word_array.uniq.length
      
+     
+     
+     
     #"Size is #{str.size} and Length is #{str.length}"
-    erb :stats, :locals => {:size => str.size, :size_small => no_spaces.size, :pages => (str.size/1800.0).round(3) , :comma => comma, :period => period, :most => most_frequent, :highest_occurrence => highest_occurrence, :start => start, :unique_words => unique_words, :word_count => word_count, :frequent_count => all_frequents_hash.keys }
+    erb :stats, :locals => {:size => str.size, :size_small => no_spaces.size, :pages => (str.size/1800.0).round(3) , :comma => comma, :period => period, :most => most_frequent, :highest_occurrence => highest_occurrence, :start => start, :unique_words => unique_words, :word_count => word_count, :frequent_count => all_frequents_hash.keys, :words_in_sentences => words_in_sentences }
     #"My name is #{params[:fname]}, and I love #{params[:lname]}."
     #"The length is #{params[:fname]}.size"
     end

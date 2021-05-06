@@ -4,7 +4,7 @@ body {
   background-size: cover;
 } 
 
-p, div, ul, h1, label, a, textarea, input {
+p, div, ul, h1, label, a, textarea, input, summary {
   color: white;
   font-family: Monaco, Verdana, serif;
 }
@@ -15,8 +15,8 @@ textarea {
   background-color: #dc9064;
   opacity: 0.6;
   font-size: 14px;
-
 }
+
 textarea:hover {
   opacity: 0.8;
 }
@@ -26,11 +26,11 @@ form {
 }  
 
 .button {
-  background-image: linear-gradient(to bottom right, #dc9064, #7a5646);
+  background: linear-gradient(to bottom right, #dc9064, #7a5646);
   border-style: outset;
   border-radius: 5px;
   cursor: pointer;
-  padding: 3px;
+  padding-left: 5px;
   font-size: 14px; 
 }
 
@@ -38,6 +38,14 @@ form {
   background-image: linear-gradient(to bottom right, #d57944, #614438);
 }
 
+summary {
+  cursor:pointer;
+  padding: 10px;
+}
+
+details > p{
+  margin-left: 20px;
+}
 
 /* Tooltip container */
 .tooltip {

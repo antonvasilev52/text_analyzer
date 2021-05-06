@@ -1,13 +1,18 @@
 <head>
 
 <%= erb :header %>
+
 </head>
 
 <body> 
 
-<h1>No text to analyze 👀</h1>
+<h1>No text to analyze</h1>
+ <img src='/img/empty.svg' width="50" height="50" style="display:block;"/> 
 <form method="GET" action="/home">
     <input type="submit" value="<%= I18n.t('back') %>" class="button">
 </form>
-
+<br>
+<!--
+<img src="/img/tanuki.svg" alt="No text..." width="10%" height="10%" style="display:block;">
+-->
 </body>

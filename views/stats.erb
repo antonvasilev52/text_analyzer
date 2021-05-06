@@ -11,10 +11,28 @@
 <p>Instance variables set in route handlers are directly accessible by templates: <%= @kek %>.</p> -->
 <p>Characters (without whitespaces): <%= size_small %>.</p>
 <p>Words: <%= word_count %>.</p>
+
+<p>Count dots: <%= @count_dots %>.</p>  <!-- The value of "Count punctuation marks" checkbox -->
+
+<% if word_count > 0 %>
 <p>Unique words: <%= unique_words %> (<%= (unique_words/word_count.to_f).round(3)*100 %>%).</p>
+<% end %>
+
 <div class="tooltip">Translation pages: <%= pages %>.
   <span class="tooltiptext">Number of characters divided by 1,800.</span>
 </div>
+
+<% if word_count > 0 %>
+<% if highest_occurrence == 1 %>
+<p>All words are unique (used only once).</p>
+<% else %>
+<p><%= I18n.t :word, :count => frequent_count.length %>: "<%= frequent_count.join('", "') %>" (<%= I18n.t :times %>: <%= highest_occurrence %>).</p>
+<% end %>
+<% end %>
+
+<% if @count_dots == "1" %>
+<details>
+  <summary>Punctuation <img src='/img/empty.svg' width="30" height="30" style="display:inline;"/>  </summary>
 <% if comma == 1 %>
 <p>You used <%= comma %> comma.</p>
 <% else %>
@@ -26,15 +44,19 @@
 <% else %>
 <p>You used <%= period %> periods.</p>
 <% end %>
-
-<% if highest_occurrence == 1 %>
-<p>No 'most frequent' word: they are all used only once.</p>
-<% else %>
-<p><%= I18n.t :word, :count => frequent_count.length %>: "<%= frequent_count.join('", "') %>" (<%= I18n.t :times %>: <%= highest_occurrence %>).</p>
+</details>
 <% end %>
+
+<details>
+  <summary>Sentences</summary>
+  <p>Sentences: <%=words_in_sentences.length %>.</p>
+  <p>Average sentence length (words): <%= words_in_sentences.sum / words_in_sentences.length.to_f %>.</p>
+</details>
 
 <!--
 <p>Most frequent word: "<%= most %>" (used <%= highest_occurrence %> times) All: "<%= frequent_count.join('", "') %>" </p>
 -->
 <p>Time to proces: <%=  (Time.now - start).round(4) %> seconds.</p>
+<br>
+<img src="/img/tanuki_light.svg" alt="No text..." width="10%" height="10%" style="display:block;">
 </body>
