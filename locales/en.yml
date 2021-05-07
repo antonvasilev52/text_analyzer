@@ -4,6 +4,7 @@ en:
   characters_spaces: "Characters (including whitespaces)"
   title: "Simple text analyzer"
   back: "Back"
+  punctuation: "Count punctuation marks"
   analyze: "Analyze"
   word:
       one: "Most frequent word"

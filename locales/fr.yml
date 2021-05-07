@@ -4,6 +4,7 @@ fr:
   characters_spaces: "Caractères (y compris les espaces)"
   title: "Analyseur de textes"
   back: "Retour"
+  punctuation: "Сompter les signes de ponctuation"
   analyze: "Analyser"
   word:
       one: "Le mot le plus fréquent"

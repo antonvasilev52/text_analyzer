@@ -5,20 +5,27 @@ body {
 } 
 
 p, div, ul, h1, label, a, textarea, input, summary {
-  color: white;
+  color: #f7e7de;
   font-family: Monaco, Verdana, serif;
 }
 
 textarea {
   border: solid 3px white;
   border-radius: 8px;
-  background-color: #dc9064;
-  opacity: 0.6;
+  background-color: rgba(220, 144, 100, 0.5);
+  color: white
+  background-image: none;
+  background-size: 200px;
+  background-repeat: no-repeat;
   font-size: 14px;
 }
 
 textarea:hover {
-  opacity: 0.8;
+  opacity: 0.6;
+  background-image: url("/img/tanuki_light.svg");
+  background-position: right top; 
+  background-size: 200px;
+  background-repeat: no-repeat;
 }
 
 form {
@@ -36,6 +43,15 @@ form {
 
 .button:hover {
   background-image: linear-gradient(to bottom right, #d57944, #614438);
+}
+
+input[checked="true"]{
+    filter: sepia(100%) contrast(200%);
+    height: 15px;
+}
+
+input[type="checkbox"]:not(:checked){
+    filter: sepia(100%) contrast(30%);
 }
 
 summary {

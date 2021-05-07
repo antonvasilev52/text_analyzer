@@ -22,10 +22,11 @@
     <label for="fname" style="vertical-align: top;"><%= I18n.t('text_label') %></label><br>
   <textarea id="fname" name="text" rows="5" cols="70"></textarea><br><br>
     <input type="checkbox" id="punctuation" name="count_dots" value="1" checked = "true">
-    <label for="punctuation"> Count punctuation marks</label> <br><br>
+    <label for="punctuation"> <%= I18n.t('punctuation') %></label> <br><br>
     <input type="submit" value="<%= I18n.t('analyze') %>" class="button">
 </form><br><br>
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
 <!--
 <p id = "locale">Locales:</p>
 <script>
