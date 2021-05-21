@@ -1,16 +1,28 @@
+:root {
+  --albescent: #f7e7de;
+}
+
 body {
   /*background: rgba(0, 128, 0, 0.3);*/
   background-image: url("/img/wood.jpg");
   background-size: cover;
+  position: absolute;
+  left: 1%;
+  top: 1%;
 } 
 
-p, div, ul, h1, label, a, textarea, input, summary {
-  color: #f7e7de;
+p, div, ul, h1, label, a, textarea, input, summary, button, i {
+  color: var(--albescent);
   font-family: Monaco, Verdana, serif;
 }
 
+.fa-question-circle {
+  color: yellow;
+  text-decoration: none;
+}
+
 textarea {
-  border: solid 3px white;
+  border: solid 3px var(--albescent);
   border-radius: 8px;
   background-color: rgba(220, 144, 100, 0.5);
   color: white
@@ -57,10 +69,15 @@ input[type="checkbox"]:not(:checked){
 summary {
   cursor:pointer;
   padding: 10px;
+  outline: none;
+  opacity:0.8;
 }
 
 details > p{
   margin-left: 20px;
+}
+summary:hover{
+ opacity:1;
 }
 
 /* Tooltip container */

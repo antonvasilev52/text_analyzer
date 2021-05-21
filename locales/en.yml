@@ -5,6 +5,7 @@ en:
   title: "Simple text analyzer"
   back: "Back"
   punctuation: "Count punctuation marks"
+  sentences: "Count sentences"
   analyze: "Analyze"
   word:
       one: "Most frequent word"

@@ -5,6 +5,7 @@ ruby "2.7.2"
 gem 'sinatra'
 gem 'puma'
 gem 'i18n'
+gem 'odyssey'
 
 # git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 

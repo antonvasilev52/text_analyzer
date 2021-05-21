@@ -5,6 +5,7 @@ fr:
   title: "Analyseur de textes"
   back: "Retour"
   punctuation: "Сompter les signes de ponctuation"
+  sentences: "Сompter les phrases"
   analyze: "Analyser"
   word:
       one: "Le mot le plus fréquent"

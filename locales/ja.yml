@@ -5,6 +5,7 @@ ja:
   title: "テキスト・アナライザー"
   back: "戻 る"
   punctuation: "句読点を数える"
+  sentences: "文を数える"
   analyze: "分析"
   word: "最も頻繁な言葉"
   times: "発生数"
