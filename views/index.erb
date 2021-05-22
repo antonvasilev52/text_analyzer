@@ -1,5 +1,7 @@
 <head>
 <%= erb :header %>
+
+
 </head>
 
 <body> 
@@ -18,6 +20,9 @@
 <p>lang="<%= I18n.locale %>"</p>
 <h3><%= I18n.t('an_article') %></h3>-->
 
+<script type="text/javascript">  
+    mixpanel.track_links('#btnAnalyze', 'Analyze Click');
+</script>  
 
 <form method="POST" action="/stats">
     <label for="fname" style="vertical-align: top;"><%= I18n.t('text_label') %></label><br>
@@ -37,20 +42,13 @@
 </form><br><br>
 <div style="font-size:10px;">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
-<!-- Default Statcounter code for Text Analyzer http://textanuki.herokuapp.com
--->
-<script type="text/javascript">
-var sc_project=12534593; 
-var sc_invisible=1; 
-var sc_security="07a40149"; 
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js" async></script>
-<noscript><div class="statcounter"><a title="website statistics"
-href="https://statcounter.com/" target="_blank"><img class="statcounter"
-src="https://c.statcounter.com/12534593/0/07a40149/1/" alt="website
-statistics"></a></div></noscript>
-<!-- End of Statcounter Code -->
+<script type="text/javascript">  
+    mixpanel.track("Page Name");
+</script>  
+
+<script type="text/javascript">  
+    mixpanel.track_links('#btnAnalyze', 'Analyze Click');
+</script>  
 
 
 <!--
