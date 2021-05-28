@@ -22,15 +22,20 @@
 <form method="POST" action="/stats">
     <label for="fname" style="vertical-align: top;"><%= I18n.t('text_label') %></label><br>
   <textarea id="fname" name="text" rows="5" cols="70"></textarea><br><br>
-    <input type="checkbox" id="punctuation" name="count_dots" value="1" checked = "true">
+    <input type="checkbox" id="punctuation" name="count_dots" value="1">
     <label for="punctuation"> <%= I18n.t('punctuation') %></label> <br><br>
     
-    <input type="checkbox" id="sentences" name="count_sentences" value="1" checked = "true">
+    <input type="checkbox" id="sentences" name="count_sentences" value="1">
     <label for="sentences"> <%= I18n.t('sentences') %></label> <br><br>
     
     <% if I18n.locale == :en %>
     <input type="checkbox" id="readability" name="readability" value="1" checked = "true">
     <label for="readability"> Check for readability</label> <br><br>
+    <% end %>
+    
+     <% if I18n.locale == :en ||  I18n.locale == :fr %>
+    <input type="checkbox" id="spelling" name="spelling" value="1" checked = "true">
+    <label for="spelling"> <%= I18n.t('check_spelling') %></label> <br><br>
     <% end %>
     
     <button id='btnAnalyze' type="submit" value="<%= I18n.t('analyze') %>" class="button"><i class="fas fa-file-code"></i> <%= I18n.t('analyze') %></button>

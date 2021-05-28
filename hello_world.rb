@@ -4,7 +4,13 @@ require 'sinatra'
 # configure { set :server, :Puma }
 require 'i18n'
 require 'odyssey'
+
 enable :sessions
+
+require 'uri'
+require 'net/http'
+require 'openssl'
+require 'json'
 
 I18n.load_path << Dir[File.expand_path("locales") + "/*.yml"]
 I18n.default_locale = :en
@@ -27,7 +33,9 @@ post '/stats' do
     start = Time.now
     str = params[:text].to_s
     @count_dots = params[:count_dots]
-    @count_sentences = params[:count_sentences] 
+    @count_sentences = params[:count_sentences]
+    @readability = params[:readability]
+    @spelling = params[:spelling]
     if str.length == 0
       erb :error_empty 
     else
@@ -39,12 +47,14 @@ post '/stats' do
     @question = str.count '?'
     @en_dash = str.count '–'
     @em_dash = str.count '—'
+    
+    if @readability == "1" 
     @flesch_kincaid_re = Odyssey.flesch_kincaid_re(str, false)
     @smog_grade = Odyssey.smog(str, false)
     @flesch_kincaid_re_level = case @flesch_kincaid_re
     when 90..150
       "Very easy to read (School grade: 5th)"
-    when 80..80
+    when 80..90
       "Easy to read (School grade: 6th)"
     when 70..80
       "Fairly easy to read (School grade: 7th)"
@@ -61,6 +71,36 @@ post '/stats' do
      else
        "Not available."
       end
+      end
+    
+    if @spelling == "1"
+    url = URI("https://dnaber-languagetool.p.rapidapi.com/v2/check")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+@text = str
+@lang = session[:locale]
+
+request = Net::HTTP::Post.new(url)
+request["content-type"] = 'application/x-www-form-urlencoded'
+request["x-rapidapi-key"] = '83fae76333msh71d08a19b6927e4p1ed439jsn1581f0b44304'
+request["x-rapidapi-host"] = 'dnaber-languagetool.p.rapidapi.com'
+request.body = "text=#{@text}&language=#{@lang}"
+
+response = http.request(request)
+@my_hash =  JSON.parse(response.body)
+#my_hash['matches'].each {|k| 
+#puts k['shortMessage']
+#a = k['offset']
+#b = k['length']
+#puts a
+#puts b
+#puts 'Error: "' + text.slice(k['offset'], k['length']) + '"'
+#puts k['offset'] + k['length']
+#}
+    end 
     
     
     sentences_array = str.split(/[.!?]/) # Get array of sentences (very roughly)
@@ -70,11 +110,11 @@ post '/stats' do
     
     
     
-    str.gsub!(/[-]/, ' ') # Replace all hyphens with whitespaces for phrases like "Comment-allez vous?"
-    str.gsub!(/[^a-zA-Zа-яА-Я0-9éèêëîïôùûüÿàœçÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸ ]/, '')    # keep only Latin and Russian letters and digits
+    no_hyphen = str.gsub(/[-]/, ' ') # Replace all hyphens with whitespaces for phrases like "Comment-allez vous?"
+    only_words = str.gsub(/[^a-zA-Zа-яА-Я0-9éèêëîïôùûüÿàœçÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸ ]/, '')    # keep only Latin and Russian letters and digits
     word_count = {} # empty hash for word count
     word_count.default = 0
-    word_array = str.split
+    word_array = only_words.split
     word_array.each { |word| word_count[word] += 1} # count each word
     most_frequent = word_array.max_by {|word| word_array.count(word)}
     number_occurences = word_array.tally #this creates a hash

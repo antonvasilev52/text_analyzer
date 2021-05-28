@@ -52,11 +52,39 @@
 </details>
 <% end %>
 
+<% if  @readability == "1" %>
 <details>
   <summary>Readability</summary>
 <p>Flesch reading-ease test score: <%= @flesch_kincaid_re %> (<%= @flesch_kincaid_re_level %>). <a href='https://en.wikipedia.org/wiki/Flesch–Kincaid_readability_tests#Flesch_reading_ease' target='_blank' class="fas fa-question-circle fa-lg"></a></p>
 <p>SMOG grade: <%= @smog_grade %>.<a href='https://en.wikipedia.org/wiki/SMOG' target='_blank' class="fas fa-question-circle fa-lg"></a></p>
 </details>
+<% end %>
+
+
+
+<% if  @spelling == "1" %>
+<% if  @my_hash['matches'].length > 0 %>
+<p>Errors: <%=@my_hash['matches'].length %></p> 
+<details>
+<p><%=@text %></p> 
+<summary>Show error details</summary>
+<ul>
+  <% @my_hash['matches'].each do |k|  %>
+  <li>Error: "<%= @text.slice(k['offset'], k['length']) %>".
+        Position: <%= k['offset'] +1 %>.
+        <%= k['message'] %> </li> 
+  <% end %>
+</ul>
+
+</details>
+<% else %>
+
+<p>No erros!</p>
+
+<% end %>
+<% end %>
+
+
 
 <!--
 <p>Most frequent word: "<%= most %>" (used <%= highest_occurrence %> times) All: "<%= frequent_count.join('", "') %>" </p>

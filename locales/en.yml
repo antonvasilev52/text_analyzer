@@ -4,8 +4,10 @@ en:
   characters_spaces: "Characters (including whitespaces)"
   title: "Simple text analyzer"
   back: "Back"
+  no_text: "No text to analyze"
   punctuation: "Count punctuation marks"
   sentences: "Count sentences"
+  check_spelling: "Check grammar and spelling"
   analyze: "Analyze"
   word:
       one: "Most frequent word"

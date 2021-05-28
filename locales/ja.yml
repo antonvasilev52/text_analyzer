@@ -4,6 +4,7 @@ ja:
   characters_spaces: "Characters (including whitespaces)"
   title: "テキスト・アナライザー"
   back: "戻 る"
+  no_text: "分析するものはありません。"
   punctuation: "句読点を数える"
   sentences: "文を数える"
   analyze: "分析"

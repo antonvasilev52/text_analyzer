@@ -4,8 +4,10 @@ fr:
   characters_spaces: "Caractères (y compris les espaces)"
   title: "Analyseur de textes"
   back: "Retour"
+  no_text: "Pas de texte à analyser"
   punctuation: "Сompter les signes de ponctuation"
   sentences: "Сompter les phrases"
+  check_spelling: "Vérifier l'orthographe et la grammaire"
   analyze: "Analyser"
   word:
       one: "Le mot le plus fréquent"
