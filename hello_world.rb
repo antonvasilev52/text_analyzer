@@ -12,6 +12,9 @@ require 'net/http'
 require 'openssl'
 require 'json'
 
+require "lemmatizer"
+require './common_words_array'
+
 I18n.load_path << Dir[File.expand_path("locales") + "/*.yml"]
 I18n.default_locale = :en
 
@@ -36,6 +39,7 @@ post '/stats' do
     @count_sentences = params[:count_sentences]
     @readability = params[:readability]
     @spelling = params[:spelling]
+    @oxford_check = params[:oxford]
     if str.length == 0
       erb :error_empty 
     else
@@ -122,6 +126,16 @@ response = http.request(request)
     
     all_frequents_hash = number_occurences.keep_if {| key, value | value == highest_occurrence } # keep only words that are frequent
     
+    uppercase_word_array = word_array.map { |m| m.capitalize }
+    lemmas = []
+    lem = Lemmatizer.new
+    
+    no_proper_nouns = uppercase_word_array - $oxford # Remove words like "Bible" and "British"
+    lowercase_word_array = no_proper_nouns.map { |m| m.downcase }  # Downcase remaining words: "Thinks" -> "thinks".
+    
+     lowercase_word_array.each { |b| lemmas <<  lem.lemma(b)} # "Find a lemma for each word: "Thinks" -> think"
+     @rare_words = lemmas - $oxford # Keep only words that are not in Oxford 3000
+     @rare_part = (@rare_words.length / lemmas.length.to_f * 100).to_i
      
      word_count = word_array.length()
      unique_words = word_array.uniq.length

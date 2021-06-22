@@ -4,6 +4,7 @@ GEM
     concurrent-ruby (1.1.8)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    lemmatizer (0.2.2)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.7)
@@ -26,6 +27,7 @@ PLATFORMS
 
 DEPENDENCIES
   i18n
+  lemmatizer
   odyssey
   puma
   sinatra

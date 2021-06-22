@@ -84,8 +84,14 @@
 <% end %>
 <% end %>
 
-
-
+<% if  @oxford_check == "1" %>
+<% if  @rare_words.length > 0 %>
+<p>Oxford: <%= @rare_words %></p>
+<p>Rare words: <%= @rare_part %>%</p>
+<% else %>
+<p>All words are from Oxford 3000.</p>
+<% end %>
+<% end %>
 <!--
 <p>Most frequent word: "<%= most %>" (used <%= highest_occurrence %> times) All: "<%= frequent_count.join('", "') %>" </p>
 -->

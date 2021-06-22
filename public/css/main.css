@@ -17,7 +17,7 @@ p, div, ul, h1, label, a, textarea, input, summary, button, i {
 }
 
 .fa-question-circle {
-  color: yellow;
+  color: #FFE4B5;
   text-decoration: none;
 }
 
@@ -71,9 +71,10 @@ form {
   background-image: linear-gradient(to bottom right, #d57944, #614438);
 }
 
-input[checked="true"]{
+input[type="checkbox"]{
     filter: sepia(100%) contrast(200%);
     height: 15px;
+    width: 15px;
 }
 
 input[type="checkbox"]:not(:checked){
