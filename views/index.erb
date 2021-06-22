@@ -1,18 +1,40 @@
 <head>
 <%= erb :header %>
-
+<script>
+function myFunction() {
+  let x = document.getElementById("hood");
+  if (x.style.display == "block") {
+    x.style.transition = "2s";
+    x.style.opacity = "0";
+    setTimeout(function(){ x.style.display = "none"; }, 1000);
+  } else {
+    x.style.display = "block";
+    setTimeout(function(){ x.style.opacity = "0.1"}, 0100); 
+    setTimeout(function(){ x.style.opacity = "0.2"}, 0200); 
+    setTimeout(function(){ x.style.opacity = "0.3"}, 0300); 
+    setTimeout(function(){ x.style.opacity = "0.4"}, 0400); 
+    setTimeout(function(){ x.style.opacity = "0.5"}, 0500); 
+    setTimeout(function(){ x.style.opacity = "0.6"}, 0600); 
+    setTimeout(function(){ x.style.opacity = "0.7"}, 0700); 
+    setTimeout(function(){ x.style.opacity = "0.8"}, 0800); 
+    setTimeout(function(){ x.style.opacity = "0.9"}, 0900); 
+    setTimeout(function(){ x.style.opacity = "1"}, 1000); 
+  setTimeout(function(){ window.scrollBy({   top: 200,  behavior: "smooth" });}, 1000);  /* smooth not working in safari */
+  }
+}
+</script>
 </head>
 
 <body> 
 
 <form method="GET" action="/home/en">
-    <input type="submit" value="English" class="button">
+  <button type="submit" value="English" class="button"><img class="languages" src="/img/hamburger.svg"> English</button>
 </form>
 <form method="GET" action="/home/fr">
-    <input type="submit" value="Français" class="button">
+    <button type="submit" value="Français" class="button"><img class="languages" src="/img/croissant.svg"> Français</button>
 </form>
 <form method="GET" action="/home/ja">
-    <input type="submit" value="日本語" class="button">
+    <button type="submit" value="日本語" class="button"><img class="languages" src="/img/sushi.svg"> 日本語</button>
 </form>
 <h3><% I18n.locale = session[:locale] %></h3> 
 <h1><%= I18n.t('title') %></h1>
@@ -40,11 +62,23 @@
     
     <button id='btnAnalyze' type="submit" value="<%= I18n.t('analyze') %>" class="button"><i class="fas fa-file-code"></i> <%= I18n.t('analyze') %></button>
 </form><br><br>
-<div style="font-size:10px;">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+<!--<div style="font-size:10px;">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 <script type="text/javascript">  
     mixpanel.track("Page Name");
-</script>  
+</script>  -->
+
+<i id="show_hood" class="fas fa-hat-wizard fa-2x" onclick="javascript:myFunction()"></i>
+<ul id="hood">Under the hood:
+  <li>Web framework: Sinatra 2.1.0</li>
+  <li>Web server: Puma 5.2.2</li>
+  <li>Deployment: <a href="https://www.heroku.com" target="_blank">Heroku</a></li>
+  <li>Localization: <a href="https://github.com/ruby-i18n/i18n" target="_blank">Ruby i18n</a></li>
+  <li>Readability tests: <a href="https://github.com/cameronsutter/odyssey" target="_blank">Odyssey</a></li>
+  <li>Icons made by <a href="https://www.freepik.com" title="Freepik" target="_blank">Freepik</a> and Smashicons from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank">www.flaticon.com</a></li>
+</ul>
+
+
 
 <!--
 <p id = "locale">Locales:</p>

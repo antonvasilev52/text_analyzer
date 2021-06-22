@@ -2,7 +2,7 @@ en:
   an_article: "An article"
   text_label: "Enter your text:"
   characters_spaces: "Characters (including whitespaces)"
-  title: "Simple text analyzer"
+  title: "Text analyzer"
   back: "Back"
   no_text: "No text to analyze"
   punctuation: "Count punctuation marks"
