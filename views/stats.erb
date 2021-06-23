@@ -18,11 +18,11 @@
 <% if word_count > 0 %>
 <p>Unique words: <%= unique_words %> (<%= (unique_words/word_count.to_f).round(3)*100 %>%).</p>
 <% end %>
-
+<!--
 <div class="tooltip">Translation pages: <%= pages %>.
   <span class="tooltiptext">Number of characters divided by 1,800.</span>
 </div>
-
+-->
 
 <% if highest_occurrence > 1 %>
 
@@ -79,7 +79,7 @@
 </details>
 <% else %>
 
-<p>No erros!</p>
+<p>Grammar and spell checker found no errors <i class="fas fa-spell-check fa-lg"></i></p>
 
 <% end %>
 <% end %>

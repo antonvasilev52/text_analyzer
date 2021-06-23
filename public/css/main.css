@@ -42,7 +42,7 @@ textarea {
 }
 
 textarea:hover {
-  opacity: 0.6;
+  opacity: 0.7;
   background-color: rgba(220, 144, 100, 0.5);
   background-position: right top; 
   background-size: 200px;
@@ -74,7 +74,7 @@ form {
 input[type="checkbox"]{
     filter: sepia(100%) contrast(200%);
     height: 15px;
-    width: 15px;
+    width: 20px;
 }
 
 input[type="checkbox"]:not(:checked){
