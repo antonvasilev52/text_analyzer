@@ -22,6 +22,12 @@ get '/' do
   redirect to('/home/en')
 end
 
+post '/' do
+  @str = $initial_text
+  erb :index
+end
+
+
 get '/home/?' do
   #session[:locale] = :en
   redirect to('/home/' + (session[:locale]).to_s)
@@ -35,6 +41,7 @@ end
 post '/stats' do
     start = Time.now
     str = params[:text].to_s
+    $initial_text = params[:text].to_s
     @count_dots = params[:count_dots]
     @count_sentences = params[:count_sentences]
     @readability = params[:readability]
@@ -151,7 +158,7 @@ response = http.request(request)
      
      
     #"Size is #{str.size} and Length is #{str.length}"
-    erb :stats, :locals => {:size => str.size, :size_small => no_spaces.size, :pages => (str.size/1800.0).round(3) , :comma => comma, :period => period, :most => most_frequent, :highest_occurrence => highest_occurrence, :start => start, :unique_words => unique_words, :word_count => word_count, :frequent_count => all_frequents_hash.keys, :words_in_sentences => words_in_sentences }
+    erb :stats, :locals => {:str => str, :size => str.size, :size_small => no_spaces.size, :pages => (str.size/1800.0).round(3) , :comma => comma, :period => period, :most => most_frequent, :highest_occurrence => highest_occurrence, :start => start, :unique_words => unique_words, :word_count => word_count, :frequent_count => all_frequents_hash.keys, :words_in_sentences => words_in_sentences }
     #"My name is #{params[:fname]}, and I love #{params[:lname]}."
     #"The length is #{params[:fname]}.size"
     end

@@ -28,6 +28,7 @@ p, div, ul, h1, label, a, textarea, input, summary, button, i {
 }
 
 textarea {
+  display: inline;
   width: 40vw;
   border: solid 3px var(--albescent);
   border-radius: 8px;
@@ -43,7 +44,7 @@ textarea {
 }
 @media screen and (max-width: 800px) {
 textarea  {
-    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
   }
 }
 
@@ -158,6 +159,15 @@ summary:hover{
   border-radius: 6px;
 }
 
-#show_hood:hover {
+#clear_text {
+  display: inline;
+  position: relative;
+  bottom: 50px;
+  left: 10px;
+  opacity: 0.8;
+}
+
+#show_hood:hover, #clear_text:hover {
   cursor:pointer;
+  opacity: 1;
 }

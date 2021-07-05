@@ -3,7 +3,8 @@
 </head>
 
 <body>
-<form method="GET" action="/">
+
+<form method="post" action='/' text='text'>
     <button type="submit" class="button"><i class="fas fa-arrow-alt-circle-left"></i> <%= I18n.t('back') %></button>
 </form>
 
@@ -86,7 +87,7 @@
 
 <% if  @oxford_check == "1" %>
 <% if  @rare_words.length > 0 %>
-<p>Oxford: <%= @rare_words %></p>
+<p>Not from Oxford 3000: <%= @rare_words %></p>
 <p>Rare words: <%= @rare_part %>%</p>
 <% else %>
 <p>All words are from Oxford 3000.</p>

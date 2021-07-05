@@ -1,6 +1,7 @@
 <head>
 <%= erb :header %>
 <script>
+    function clearText() {document.getElementById("fname").value = "";}
 function myFunction() {
   let x = document.getElementById("hood");
   if (x.style.display == 'block') {
@@ -43,8 +44,15 @@ function myFunction() {
 
 <form method="POST" action="/stats">
     <label for="fname" style="vertical-align: top;"><%= I18n.t('text_label') %></label><br>
-  <textarea id="fname" name="text" rows="5"></textarea><br><br>
-    <input type="checkbox" id="punctuation" name="count_dots" value="1">
+  <% unless (defined?(@str)).nil?%>
+  <textarea id="fname" name="text" rows="5"><%= @str %></textarea>
+  <% else %>
+  <textarea id="fname" name="text" rows="5"></textarea>
+  <% end %>
+
+  <i id="clear_text" class="far fa-trash-alt fa-2x" onclick="javascript:clearText()" title='Remove text'></i><br>
+
+  <input type="checkbox" id="punctuation" name="count_dots" value="1">
     <label for="punctuation"> <%= I18n.t('punctuation') %></label> <br><br>
     
     <input type="checkbox" id="sentences" name="count_sentences" value="1">
