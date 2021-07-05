@@ -1,9 +1,11 @@
 <head>
 <%= erb :header %>
 <script>
-    function clearText() {document.getElementById("fname").value = "";}
+    function clearText() {
+        document.getElementById("fname").value = "";
+        document.getElementById("clear_text").style.display = 'none';
+    }
 function myFunction() {
-  let x = document.getElementById("hood");
   if (x.style.display == 'block') {
     x.style.transition = "2s";
     x.style.opacity = "0";
@@ -47,7 +49,7 @@ function myFunction() {
   <% unless (defined?(@str)).nil?%>
   <textarea id="fname" name="text" rows="5"><%= @str %></textarea>
   <% else %>
-  <textarea id="fname" name="text" rows="5"></textarea>
+  <textarea id="fname" name="text" rows="5" oninput="javascript:showTrash()"></textarea>
   <% end %>
 
   <i id="clear_text" class="far fa-trash-alt fa-2x" onclick="javascript:clearText()" title='Remove text'></i><br>
@@ -102,5 +104,15 @@ document.getElementById("locale").innerHTML = "Hello JavaScript!";
 
 <i class="fas fa-piggy-bank"></i>
 -->
+
+<script>
+    function showTrash() {
+        let x = document.getElementById("hood");
+        let clear = document.getElementById("clear_text");
+        if (document.getElementById("fname").value == "") {clear.style.display = 'none';}
+        else {clear.style.display = 'inline';}
+    }
+    showTrash();
+</script>
 
 </body>
