@@ -26,7 +26,7 @@
 
 <% if highest_occurrence > 1 %>
 
-<p><%= I18n.t :word, :count => frequent_count.length %>: "<%= frequent_count.join('", "') %>" (<%= I18n.t :times %>: <%= highest_occurrence %>).</p>
+<p><%= I18n.t :word, :count => frequent_count.length %>: "<%= frequent_count.join %>" (<%= I18n.t :times %>: <%= highest_occurrence %>).</p>
 <% end %>
 
 

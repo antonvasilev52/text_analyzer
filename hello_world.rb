@@ -12,10 +12,10 @@ require 'net/http'
 require 'openssl'
 require 'json'
 
-require "lemmatizer"
+require 'lemmatizer'
 require './common_words_array'
 
-I18n.load_path << Dir[File.expand_path("locales") + "/*.yml"]
+I18n.load_path << Dir["#{File.expand_path('locales')}/*.yml"]
 I18n.default_locale = :en
 
 get '/' do
@@ -44,7 +44,7 @@ post '/stats' do
       erb :error_empty 
     else
     # @kek = params[:fname]
-    no_spaces = str.gsub(/\s+/, "")
+    no_spaces = str.gsub(/\s+/, '')
     comma = str.count ','
     period = str.count '.'
     @exclamation = str.count '!'
@@ -52,33 +52,33 @@ post '/stats' do
     @en_dash = str.count '–'
     @em_dash = str.count '—'
     
-    if @readability == "1" 
+    if @readability == '1' 
     @flesch_kincaid_re = Odyssey.flesch_kincaid_re(str, false)
     @smog_grade = Odyssey.smog(str, false)
     @flesch_kincaid_re_level = case @flesch_kincaid_re
-    when 90..150
-      "Very easy to read (School grade: 5th)"
-    when 80..90
-      "Easy to read (School grade: 6th)"
-    when 70..80
-      "Fairly easy to read (School grade: 7th)"
-    when 60..70
-      "Plain English (School grade: 8th & 9th)"
-    when 50..60
-      "Fairly difficult to read (School grade: 10th to 12th)"
-    when 30..50
-      "Difficult to read (College)"
-    when 10..30
-      "Very difficult to read (College graduate)"
-    when 0..10
-      "Extremely difficult to read. Best understood by university graduates."
+                               when 90..150
+      'Very easy to read (School grade: 5th)'
+                               when 80..90
+      'Easy to read (School grade: 6th)'
+                               when 70..80
+      'Fairly easy to read (School grade: 7th)'
+                               when 60..70
+      'Plain English (School grade: 8th & 9th)'
+                               when 50..60
+      'Fairly difficult to read (School grade: 10th to 12th)'
+                               when 30..50
+      'Difficult to read (College)'
+                               when 10..30
+      'Very difficult to read (College graduate)'
+                               when 0..10
+      'Extremely difficult to read. Best understood by university graduates.'
      else
-       "Not available."
-      end
-      end
+       'Not available.'
+                               end
+    end
     
-    if @spelling == "1"
-    url = URI("https://dnaber-languagetool.p.rapidapi.com/v2/check")
+    if @spelling == '1'
+    url = URI('https://dnaber-languagetool.p.rapidapi.com/v2/check')
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -88,9 +88,9 @@ http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 @lang = session[:locale]
 
 request = Net::HTTP::Post.new(url)
-request["content-type"] = 'application/x-www-form-urlencoded'
-request["x-rapidapi-key"] = '83fae76333msh71d08a19b6927e4p1ed439jsn1581f0b44304'
-request["x-rapidapi-host"] = 'dnaber-languagetool.p.rapidapi.com'
+request['content-type'] = 'application/x-www-form-urlencoded'
+request['x-rapidapi-key'] = '83fae76333msh71d08a19b6927e4p1ed439jsn1581f0b44304'
+request['x-rapidapi-host'] = 'dnaber-languagetool.p.rapidapi.com'
 request.body = "text=#{@text}&language=#{@lang}"
 
 response = http.request(request)
@@ -110,21 +110,21 @@ response = http.request(request)
     sentences_array = str.split(/[.!?]/) # Get array of sentences (very roughly)
     words_in_sentences = [] # empty array to store the number of words in each sentence
     sentences_array.each { |kek| words_in_sentences << (kek.split).length } # Get the number of words in each sentence
-    average_sentence_length = words_in_sentences.sum / words_in_sentences.length.to_f
+    #average_sentence_length = words_in_sentences.sum / words_in_sentences.length.to_f
     
     
     
-    no_hyphen = str.gsub(/[-]/, ' ') # Replace all hyphens with whitespaces for phrases like "Comment-allez vous?"
+    #no_hyphen = str.gsub(/[-]/, ' ') # Replace all hyphens with whitespaces for phrases like "Comment-allez vous?"
     only_words = str.gsub(/[^a-zA-Zа-яА-Я0-9éèêëîïôùûüÿàœçÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸ ]/, '')    # keep only Latin and Russian letters and digits
     word_count = {} # empty hash for word count
     word_count.default = 0
     word_array = only_words.split
     word_array.each { |word| word_count[word] += 1} # count each word
     most_frequent = word_array.max_by {|word| word_array.count(word)}
-    number_occurences = word_array.tally #this creates a hash
-    highest_occurrence =  number_occurences[most_frequent] # the value (number) from the hash number_occurences
+    number_occurrences = word_array.tally #this creates a hash
+    highest_occurrence = number_occurrences[most_frequent] # the value (number) from the hash number_occurrences
     
-    all_frequents_hash = number_occurences.keep_if {| key, value | value == highest_occurrence } # keep only words that are frequent
+    all_frequents_hash = number_occurrences.keep_if { | _key, value | value == highest_occurrence } # keep only words that are frequent
     
     lemmas = []
     common_words = []
@@ -141,12 +141,12 @@ response = http.request(request)
       common_words << m
      elsif $oxford.include?(lem.lemma(m.downcase))
        common_words << m
-    end
+     end
         } 
      @rare_words = word_array- common_words
      @rare_part = (@rare_words.length / word_array.length.to_f * 100).to_i
      
-     word_count = word_array.length()
+     word_count = word_array.length
      unique_words = word_array.uniq.length
      
      

@@ -28,6 +28,7 @@ p, div, ul, h1, label, a, textarea, input, summary, button, i {
 }
 
 textarea {
+  width: 40vw;
   border: solid 3px var(--albescent);
   border-radius: 8px;
   background-image: url("/img/tanuki_light.svg");
@@ -39,6 +40,11 @@ textarea {
   background-size: 200px;
   background-repeat: no-repeat;
   font-size: 14px;
+}
+@media screen and (max-width: 800px) {
+textarea  {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
 }
 
 textarea:hover {
