@@ -6,6 +6,7 @@
         document.getElementById("clear_text").style.display = 'none';
     }
 function myFunction() {
+    let x = document.getElementById("hood");
   if (x.style.display == 'block') {
     x.style.transition = "2s";
     x.style.opacity = "0";
@@ -82,7 +83,7 @@ function myFunction() {
 <script type="text/javascript">  
     mixpanel.track("Page Name");
 </script>  -->
-
+<% if I18n.locale == :en %>
 <i id="show_hood" class="fas fa-hat-wizard fa-2x" onclick="javascript:myFunction()" title='Under the hood'></i>
 <ul id="hood">Under the hood:
   <li>Web framework: Sinatra 2.1.0</li>
@@ -92,7 +93,7 @@ function myFunction() {
   <li>Readability tests: <a href="https://github.com/cameronsutter/odyssey" target="_blank">Odyssey</a></li>
   <li>Icons made by <a href="https://www.freepik.com" title="Freepik" target="_blank">Freepik</a> and Smashicons from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank">www.flaticon.com</a></li>
 </ul>
-
+<% end %>
 
 
 <!--
@@ -107,7 +108,6 @@ document.getElementById("locale").innerHTML = "Hello JavaScript!";
 
 <script>
     function showTrash() {
-        let x = document.getElementById("hood");
         let clear = document.getElementById("clear_text");
         if (document.getElementById("fname").value == "") {clear.style.display = 'none';}
         else {clear.style.display = 'inline';}
