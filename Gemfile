@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 ruby "2.7.2"
 gem 'sinatra'
-gem 'puma'
+gem "puma", ">= 5.5.1"
 gem 'i18n'
 gem 'odyssey'
 gem 'lemmatizer'
